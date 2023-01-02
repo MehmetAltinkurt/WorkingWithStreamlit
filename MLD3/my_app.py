@@ -126,3 +126,54 @@ x=st.sidebar.slider("input2")
 
 st.write("sidebar input products")
 st.success(a*x)
+
+
+#data frame creation
+
+df=pd.read_csv("Advertising.csv")
+
+st.table(df.head())
+
+st.write(df.shape)
+st.write(df.isnull().sum())
+
+st.dataframe(df.describe())
+st.dataframe(df.shape)
+
+
+
+
+
+
+
+
+
+import pickle
+
+filename = 'my_model'
+model = pickle.load(open(filename, 'rb'))
+
+st.write(df.describe())
+
+TV = st.sidebar.number_input("TV:",min_value=5, max_value=300)
+radio = st.sidebar.number_input("radio:",min_value=1, max_value=50)
+newspaper = st.sidebar.number_input("newspaper:",min_value=0, max_value=120)
+
+my_dict = {
+           "TV": TV,
+           "radio": radio,
+           "newspaper": newspaper
+          }
+
+df=pd.DataFrame.from_dict([my_dict])
+
+st.table(df)
+
+if st.button("Predict"):
+    pred = model.predict(df)
+    st.write(pred[0])
+
+
+
+
+
