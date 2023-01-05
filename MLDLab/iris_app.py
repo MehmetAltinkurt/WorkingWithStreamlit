@@ -56,7 +56,8 @@ def prediction(model, input_data):
 	prediction = model.predict(input_data)
 	return prediction
 	
-	
+
+
 # Making prediction and displaying results
 if st.button("Predict"):
     if model_selected == "Logistic Regression":
